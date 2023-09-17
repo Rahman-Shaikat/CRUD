@@ -27,18 +27,16 @@
                         <td>{{ $product->code }}</td>
                         <td>{{ $product->category->name }}</td>
                         <td>{{ $product->price }}</td>
-                        <td>{{ $product->name }}</td>
-                        {{-- <td><img src="{{asset($students->image)}}" style="height: 50px; width: 50px" alt=""></td> --}}
-                        {{-- <td>
-                            <a href="{{route('sessions.edit',$session->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="{{route('session.wise.student',$session->id)}}" class="btn btn-success btn-sm">Session Wise Student</a>
-                            <form action="{{ route('sessions.destroy',$session->id) }}" method="post">
+                        <td><img src="{{ asset($product->image) }}" style="height: 50px; width: 50px" alt=""></td>
+                        <td>
+                            <a href="{{ route('products.edit',$product->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                            <form action="{{ route('products.destroy',$product->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Are you want to delete this!!')">Delete</button>
                             </form>
-                        </td> --}}
+                        </td>
                     </tr>
                 @endforeach
                 </table>

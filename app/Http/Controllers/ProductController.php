@@ -11,9 +11,10 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+    private static $product;
     public function index()
     {
-        return view('products.index',[
+        return view('products.index', [
             'products' => Product::all(),
             'categories' => Category::all()
         ]);
@@ -24,7 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create',[
+        return view('products.create', [
             'products' => Product::all(),
             'categories' => Category::all()
         ]);
@@ -52,7 +53,10 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('products.edit', [
+            'products' => Product::find($id),
+            'categories' => Category::find($id)
+        ]);
     }
 
     /**
@@ -68,6 +72,13 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        self::$product = Product::find($id);
+        if (self::$product->image) {
+            if (file_exists(self::$product->image)) {
+                unlink(self::$product->image);
+            }
+        }
+        self::$product->delete();
+        return back();
     }
 }

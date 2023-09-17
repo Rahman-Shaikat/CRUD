@@ -18,13 +18,12 @@ class Category extends Model
         } else {
             self::$category = new Category();
         }
-        self::$category = new Category();
         self::$category->name = $request->name;
         self::$category->save();
     }
 
     public function products()
     {
-        return $this -> hasMany(Product::class);
+        return $this->hasMany(Product::class);
     }
 }

@@ -1,6 +1,6 @@
 @extends('master')
 @section('title')
-    Create
+    Edit
 @endsection
 
 @section('content')
@@ -21,22 +21,23 @@
                                         <option>Please Select a Category</option>
 
                                         @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}" {{ ( $category->id == $product->category_id ) ? 'selected' : '' }}> {{ $category->name }} </option>
                                         @endforeach
+                                        
                                     </select>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Product Name</label>
-                                    <input type="text" name="name" class="form-control">
+                                    <input type="text" name="name" value="{{ $products->name  }}" class="form-control">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Product Code</label>
-                                    <input type="text" name="code" class="form-control">
+                                    <input type="text" name="code" value="{{ $products->code  }}" class="form-control">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Price</label>
-                                    <input type="text" name="price" class="form-control">
+                                    <input type="text" name="price" value="{{ $products->price  }}" class="form-control">
                                 </div>
 
                                 <div class="mb-3">

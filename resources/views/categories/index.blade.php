@@ -17,9 +17,17 @@
                     </thead>
                     @foreach ($categories as $category)
                     <tr>
-                        <th scope="col">{{ $loop->iteration }}</th>
-                        <th scope="col">{{ $category->name }}</th>
-                        <th scope="col">Action</th>
+                        <td scope="col">{{ $loop->iteration }}</td>
+                        <td scope="col">{{ $category->name }}</td>
+                        <td>
+                            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                            <form action="{{ route('categories.destroy', $category->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Are you want to delete this!!')">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                     

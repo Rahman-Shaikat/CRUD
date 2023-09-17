@@ -11,10 +11,10 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    private static $categories, $category;
+    private static $category;
     public function index()
     {
-        return view('categories.index',[
+        return view('categories.index', [
             'categories' => Category::all()
         ]);
     }
@@ -49,7 +49,9 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('categories.edit', [
+            'category' => Category::find($id)
+        ]);
     }
 
     /**
@@ -57,7 +59,8 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        Category::saveInfo($request, $id);
+        return redirect(route('categories.index'));
     }
 
     /**
@@ -65,6 +68,8 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        self::$category = Category::find($id);
+        self::$category->delete();
+        return back();
     }
 }
