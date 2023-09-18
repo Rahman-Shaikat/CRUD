@@ -11,7 +11,7 @@
                     <div class="card">
                         <div class="card-header">Product Create Form</div>
                         <div class="card-body">
-                            <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('products.update', $product->id)}}" method="post" enctype="multipart/form-data">
                                 @csrf
 
         
@@ -29,15 +29,15 @@
 
                                 <div class="mb-3">
                                     <label class="form-label">Product Name</label>
-                                    <input type="text" name="name" value="{{ $products->name  }}" class="form-control">
+                                    <input type="text" name="name" value="{{ $product->name  }}" class="form-control">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Product Code</label>
-                                    <input type="text" name="code" value="{{ $products->code  }}" class="form-control">
+                                    <input type="text" name="code" value="{{ $product->code  }}" class="form-control">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Price</label>
-                                    <input type="text" name="price" value="{{ $products->price  }}" class="form-control">
+                                    <input type="text" name="price" value="{{ $product->price  }}" class="form-control">
                                 </div>
 
                                 <div class="mb-3">

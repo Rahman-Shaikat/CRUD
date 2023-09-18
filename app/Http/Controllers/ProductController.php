@@ -54,7 +54,7 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         return view('products.edit', [
-            'products' => Product::find($id),
+            'product' => Product::find($id),
             'categories' => Category::find($id)
         ]);
     }
@@ -64,7 +64,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        Product::saveInfo($request, $id);
+        return redirect(route('products.index'));
     }
 
     /**
